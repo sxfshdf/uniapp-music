@@ -5,3 +5,13 @@ view:after,
 view:before {
 	box-sizing: border-box;
 }
+
+.flex-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	.flex-item {
+		flex: 1;
+	}
+}

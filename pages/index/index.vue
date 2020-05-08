@@ -1,30 +1,49 @@
 <template>
 	<view class="content">
 		<view class="swiper-wrapper">
-			<swiper class="swiper" 
-			indicator-active-color="#ff2519"
-			indicator-color="rgba(0,0,0,.2)"
-			:indicator-dots="true" 
-			:circular="true" 
-			:autoplay="true" 
-			:interval="5000" 
-			:duration="300">
-				<swiper-item><view class="swiper-item uni-bg-red">A</view></swiper-item>
-				<swiper-item><view class="swiper-item uni-bg-green">B</view></swiper-item>
-				<swiper-item><view class="swiper-item uni-bg-blue">C</view></swiper-item>
+			<swiper
+				class="swiper"
+				indicator-active-color="#ff2519"
+				indicator-color="rgba(0,0,0,.2)"
+				:indicator-dots="true"
+				:circular="true"
+				:autoplay="true"
+				:interval="5000"
+				:duration="300"
+			>
+				<swiper-item v-for="(d, i) in swipers" :key="i">
+					<view class="swiper-item"><img :src="d.imageUrl" alt="" /></view>
+				</swiper-item>
 			</swiper>
+		</view>
+		<view class="main-bar flex-box">
+			<view class="flex-item bar" v-for="(d, i) in contentBar" :key="i">
+				<img :src="'/static/index/t_' + (i + 1) + '.png'" alt="" />
+				<view class="title">{{ d.name }}</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex'
 export default {
 	components: {},
 	data() {
-		return {};
+		return {
+			contentBar: [{ name: '每日推荐' }, { name: '歌单' }, { name: '排行榜' }, { name: '电台' }, { name: '直播' }],
+			swipers: []
+		};
 	},
-	onLoad() {},
+	onLoad() {
+		uni.request({
+			url: 'http://localhost:3000/banner',
+			method: 'GET',
+			success: (res) => {
+				this.swipers = res.data.banners
+			}
+		})
+	},
 	computed: {
 		...mapGetters(['isLogin'])
 	},
@@ -48,8 +67,35 @@ export default {
 		.swiper-item {
 			height: 100%;
 			background: #eee;
+
+			img {
+				max-height: 100%;
+			}
 		}
-		
+	}
+
+	.main-bar {
+		width: 100%;
+		padding: 40rpx 32rpx;
+		justify-content: space-between;
+
+		.bar {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+
+			.title {
+				font-size: 26rpx;
+				margin-top: 16rpx;
+				color: #888;
+			}
+			img {
+				display: block;
+				width: 92rpx;
+				height: 92rpx;
+			}
+		}
 	}
 }
 </style>
