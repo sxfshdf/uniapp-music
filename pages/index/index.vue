@@ -22,17 +22,22 @@
 				<view class="title">{{ d.name }}</view>
 			</view>
 		</view>
+		<SongList :songList="songList"></SongList>
 	</view>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import SongList from '../../components/SongList.vue'
 export default {
-	components: {},
+	components: {
+		SongList
+	},
 	data() {
 		return {
 			contentBar: [{ name: '每日推荐' }, { name: '歌单' }, { name: '排行榜' }, { name: '电台' }, { name: '直播' }],
-			swipers: []
+			swipers: [],
+			songList: []
 		};
 	},
 	onLoad() {
@@ -41,6 +46,15 @@ export default {
 			method: 'GET',
 			success: (res) => {
 				this.swipers = res.data.banners
+			}
+		})
+		
+		uni.request({
+			url: 'http://localhost:3000/personalized?limit=6',
+			method: 'GET',
+			success: (res) => {
+				console.log(res)
+				this.songList = res.data.result
 			}
 		})
 	},

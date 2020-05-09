@@ -28,6 +28,11 @@
 			"style": {
 				"navigationBarTitleText": "账号"
 			}
+		}, {
+			"path": "pages/test/index",
+			"style": {
+				"navigationBarTitleText": "账号"
+			}
 		}
 	],
 	"tabBar": {
