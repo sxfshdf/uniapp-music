@@ -42,7 +42,7 @@ export default {
 	},
 	onLoad() {
 		uni.request({
-			url: 'http://localhost:3000/banner',
+			url: 'http://192.168.0.93:3000/banner',
 			method: 'GET',
 			success: (res) => {
 				this.swipers = res.data.banners
@@ -50,10 +50,9 @@ export default {
 		})
 		
 		uni.request({
-			url: 'http://localhost:3000/personalized?limit=6',
+			url: 'http://192.168.0.93:3000/personalized?limit=6',
 			method: 'GET',
 			success: (res) => {
-				console.log(res)
 				this.songList = res.data.result
 			}
 		})

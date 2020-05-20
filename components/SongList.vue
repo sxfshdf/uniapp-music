@@ -4,11 +4,11 @@
 			<view class="title">{{title}}</view>
 			<navigator :url="link" class="show-more">歌单广场</navigator>
 		</view>
-		<scroll-view class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scrolltolower="handleScroll">
+		<scroll-view class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scroll="handleScroll">
 			<view class="song" v-for="(d, i) in songList" :key="i">
 				<img :src="d.picUrl" alt="">
 				<view class="description">{{d.name}}</view>
-				<view class="count">{{d.count}}</view>
+				<view class="count">{{setCount(d.playCount)}}</view>
 			</view>
 		</scroll-view>
 	</view>
@@ -37,12 +37,24 @@
 				list: []
 			}
 		},
+		mounted() {
+			this.songList.forEach(song => {
+				console.log(song.playCount.length)
+			})
+		},
 		methods: {
-			handleScroll() {
-				console.log('scroll right')
-				uni.navigateTo({
-					url: '../test/index'
-				})
+			handleScroll(event) {
+				console.log(event.detail)
+				// uni.navigateTo({
+				// 	url: '../test/index'
+				// })
+			},
+			setCount(value) {
+				if (value.toString().length < 9) {
+					return Math.floor(value/10000) + '万'
+				} else {
+					return Math.floor(value / 100000000) + '亿'
+				}
 			}
 		}
 	}
@@ -63,7 +75,7 @@
 				flex-shrink: 0;
 				padding-right: 20rpx;
 				display: inline-block;
-				
+				position: relative;
 				// &:last-child {
 				// 	padding-right: 0
 				// }
@@ -83,6 +95,14 @@
 					white-space: normal !important;
 					-webkit-line-clamp: 2;
 					-webkit-box-orient: vertical;
+				}
+				
+				.count {
+					position: absolute;
+					color: #fff;
+					font-size: 20rpx;
+					top: 8rpx;
+					right: 32rpx;
 				}
 			}
 		}
