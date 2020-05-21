@@ -2,7 +2,7 @@
 	<view class="song-list-comp">
 		<view class="title-wrapper">
 			<view class="title">{{title}}</view>
-			<navigator :url="link" class="show-more">歌单广场</navigator>
+			<navigator :url="link" class="show-more">查看更多</navigator>
 		</view>
 		<scroll-view class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scroll="handleScroll">
 			<view class="song" v-for="(d, i) in songList" :key="i">
@@ -16,6 +16,7 @@
 
 <script>
 	export default {
+		name: 'SongList',
 		props: {
 			title: {
 				type: String,
@@ -44,7 +45,6 @@
 		},
 		methods: {
 			handleScroll(event) {
-				console.log(event.detail)
 				// uni.navigateTo({
 				// 	url: '../test/index'
 				// })
@@ -60,7 +60,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.song-list-comp {
 		width: 100%;
 		padding: 0 20rpx;
@@ -104,6 +104,16 @@
 					top: 8rpx;
 					right: 32rpx;
 				}
+			}
+		}
+		.title-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 16rpx;
+			.title {
+				font-size: 32rpx;
+				font-weight: bold;
 			}
 		}
 	}

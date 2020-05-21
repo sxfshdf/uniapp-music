@@ -22,22 +22,26 @@
 				<view class="title">{{ d.name }}</view>
 			</view>
 		</view>
-		<SongList :songList="songList"></SongList>
+		<SongList :songList="songList" :title="title" />
+		<SongTab />
 	</view>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import SongList from '../../components/SongList.vue'
+import SongList from '@/components/SongList.vue'
+import SongTab from '@/components/SongTab.vue'
+
 export default {
 	components: {
-		SongList
+		SongList, SongTab
 	},
 	data() {
 		return {
 			contentBar: [{ name: '每日推荐' }, { name: '歌单' }, { name: '排行榜' }, { name: '电台' }, { name: '直播' }],
 			swipers: [],
-			songList: []
+			songList: [],
+			title: '歌单广场',
 		};
 	},
 	onLoad() {

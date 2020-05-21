@@ -1,0 +1,5 @@
+@mixin singleLineHidden($width) {
+	width: $width;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
