@@ -11,8 +11,8 @@
 				:interval="5000"
 				:duration="300"
 			>
-				<swiper-item v-for="(d, i) in swipers" :key="i">
-					<view class="swiper-item"><img :src="d.imageUrl" alt="" /></view>
+				<swiper-item class="swiper-item-wrapper flex-box" v-for="(d, i) in swipers" :key="i">
+					<view class="swiper-item flex-box"><img :src="d.imageUrl" alt="" /></view>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -78,15 +78,22 @@ export default {
 	justify-content: center;
 
 	.swiper-wrapper {
-		padding: 20rpx;
 		width: 100%;
-
-		.swiper-item {
-			height: 100%;
-			background: #eee;
-
-			img {
-				max-height: 100%;
+		.swiper {
+			height: calc( 100vw * 131 / 355);
+		}
+		
+		.swiper-item-wrapper {
+			padding: 20rpx;
+	
+			.swiper-item {
+				height: 100%;
+				background: #eee;
+			
+				img {
+					max-width: 100%;
+					border-radius: 12rpx;
+				}
 			}
 		}
 	}

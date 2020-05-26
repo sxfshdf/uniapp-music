@@ -3,3 +3,11 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+@mixin baseAfter($height, $width) {
+	display: block;
+	content: '';
+	position: absolute;
+	height: $height;
+	width: $width;
+}
