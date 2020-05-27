@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "发现"
 				// "app-plus": {
@@ -9,29 +9,29 @@
 				// }
 			}
 		}, {
-			"path": "pages/cloud/index",
+			"path": "pages/cloud/cloud",
 			"style": {
 				"navigationBarTitleText": "云村"
 			}
 		}, {
-			"path": "pages/mine/index",
+			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
 		}, {
-			"path": "pages/video/index",
+			"path": "pages/video/video",
 			"style": {
 				"navigationBarTitleText": "视频"
 			}
 		}, {
-			"path": "pages/account/index",
+			"path": "pages/account/account",
 			"style": {
 				"navigationBarTitleText": "账号"
 			}
 		}, {
-			"path": "pages/test/index",
+			"path": "pages/songSquare/songSquare",
 			"style": {
-				"navigationBarTitleText": "账号"
+				"navigationBarTitleText": "歌单广场"
 			}
 		}
 	],
@@ -41,27 +41,27 @@
 		"borderStyle": "white",
 		"backgroundColor": "#f9f9f9",
 		"list": [{
-			"pagePath": "pages/index/index",
+			"pagePath": "pages/home/home",
 			"iconPath": "static/tab/t_1.png",
 			"selectedIconPath": "static/tab/t_11.png",
 			"text": "发现"
 		}, {
-			"pagePath": "pages/video/index",
+			"pagePath": "pages/video/video",
 			"iconPath": "static/tab/t_2.png",
 			"selectedIconPath": "static/tab/t_21.png",
 			"text": "视频"
 		}, {
-			"pagePath": "pages/mine/index",
+			"pagePath": "pages/mine/mine",
 			"iconPath": "static/tab/t_3.png",
 			"selectedIconPath": "static/tab/t_31.png",
 			"text": "我的"
 		}, {
-			"pagePath": "pages/cloud/index",
+			"pagePath": "pages/cloud/cloud",
 			"iconPath": "static/tab/t_4.png",
 			"selectedIconPath": "static/tab/t_41.png",
 			"text": "云村"
 		}, {
-			"pagePath": "pages/account/index",
+			"pagePath": "pages/account/account",
 			"iconPath": "static/tab/t_5.png",
 			"selectedIconPath": "static/tab/t_51.png",
 			"text": "账号"

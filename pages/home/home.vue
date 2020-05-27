@@ -22,7 +22,7 @@
 				<view class="title">{{ d.name }}</view>
 			</view>
 		</view>
-		<SongList :songList="songList" :title="title" />
+		<SongList :songList="songList" :title="title" :link="url"/>
 		<SongTab />
 	</view>
 </template>
@@ -33,6 +33,7 @@ import SongList from '@/components/SongList.vue'
 import SongTab from '@/components/SongTab.vue'
 
 export default {
+	name: 'home',
 	components: {
 		SongList, SongTab
 	},
@@ -42,6 +43,7 @@ export default {
 			swipers: [],
 			songList: [],
 			title: '歌单广场',
+			url: '/pages/songSquare/songSquare'
 		};
 	},
 	onLoad() {

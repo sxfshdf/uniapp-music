@@ -1,3 +1,6 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
 * {
 	box-sizing: border-box;
 }
@@ -21,4 +24,18 @@
 	padding: 8rpx 20rpx;
 	border-radius: 30rpx;
 	border: 1px solid #C0C0C0;
+}
+
+@mixin singleLineHidden($width) {
+	width: $width;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin baseAfter($height, $width) {
+	display: block;
+	content: '';
+	position: absolute;
+	height: $height;
+	width: $width;
 }

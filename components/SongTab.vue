@@ -7,10 +7,10 @@
 				<view class="tab-item" :class="{active: activeKey === 2}" @click="clickTab(2)">新歌</view>
 			</view>
 			<template v-if="activeKey === 1">
-				<navigator class="show-more">更多新碟</navigator>
+				<navigator class="show-more" :url="link">更多新碟</navigator>
 			</template>
 			<template v-if="activeKey === 2">
-				<navigator class="show-more">更多新歌</navigator>
+				<navigator class="show-more" :url="link">更多新歌</navigator>
 			</template>
 		</view>
 		<scroll-view scroll-x="true" class="scroll-wrapper" :scroll-left="scrollLeft" @scroll="handleScroll">
@@ -47,6 +47,11 @@
 <script>
 	export default {
 		name: 'SongTab',
+		props: {
+			link: {
+				type: String,
+			}
+		},
 		data() {
 			return {
 				activeKey: 1,
@@ -125,7 +130,7 @@
 </script>
 	
 <style lang="scss" scoped>
-	@import '@/common/css/mixins.scss';
+	@import "@/common/css/common.scss";
 	.song-tab-wrapper {
 		width: 100%;
 		padding: 20rpx;
@@ -210,20 +215,20 @@
 						flex-direction: column;
 						align-items: flex-start;
 						padding: 0 12rpx;
-						width: 100%;
+						width: 72%;
 						
 						&.new-album {
 							padding: 0 12rpx 0 32rpx;
 						}
 						
 						.name {
-							@include singleLineHidden(90%);
+							@include singleLineHidden(100%);
 							font-size: 32rpx;
 							margin-bottom: 8rpx;
 						}
 						
 						.artists {
-							@include singleLineHidden(90%);
+							@include singleLineHidden(100%);
 							font-size: 26rpx;
 							color: #999;
 						}
