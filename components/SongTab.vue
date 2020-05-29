@@ -196,7 +196,7 @@
 								top: 0;
 								border-radius: 100%;
 								background: #000;
-								z-index: -1;
+								z-index: -2;
 							}
 							&:before {
 								@include baseAfter(90%, 90%);
@@ -205,7 +205,8 @@
 								right: -10rpx;
 								border: 2rpx solid #ccc;
 								border-radius: 4rpx;
-								z-index: -2;
+								background: rgba(255,255,255,.2);
+								z-index: -1;
 							}
 							
 						}
