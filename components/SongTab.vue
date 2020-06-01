@@ -16,7 +16,7 @@
 		<scroll-view scroll-x="true" class="scroll-wrapper" :scroll-left="scrollLeft" @scroll="handleScroll">
 			<template v-if="activeKey === 1">
 				<view v-for="(item, index) in newAlbumList" :key="index" class="scroll-item-wrapper">
-					<view class="scroll-item flex-box" v-for="(d, i) in item" :key="i">
+					<view class="scroll-item flex-box" v-for="d in item" :key="d.id">
 						<view class="song-pic new-album">
 							<img :src="d.blurPicUrl" alt="">
 						</view>
@@ -29,7 +29,7 @@
 			</template>
 			<template v-else>
 				<view v-for="(item, index) in newSongList" :key="index" class="scroll-item-wrapper">
-					<view class="scroll-item flex-box" v-for="(d, i) in item" :key="i">
+					<view class="scroll-item flex-box" v-for="d in item" :key="d.id">
 						<view class="song-pic">
 							<img :src="d.album && d.album.blurPicUrl" alt="">
 						</view>

@@ -22,7 +22,7 @@
 				<view class="title">{{ d.name }}</view>
 			</view>
 		</view>
-		<SongList :songList="songList" :title="title" :link="url"/>
+		<SongList :songList="songList" :title="title" :link="url" :horizontal="true" />
 		<SongTab />
 	</view>
 </template>

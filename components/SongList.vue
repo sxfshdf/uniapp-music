@@ -1,12 +1,19 @@
 <template>
 	<view class="song-list-comp">
 		<view class="title-wrapper">
-			<view class="title">{{title}}</view>
-			<navigator :url="link" class="show-more">查看更多</navigator>
+			<view v-if="title" class="title">{{title}}</view>
+			<navigator v-if="link" :url="link" class="show-more">查看更多</navigator>
 		</view>
-		<scroll-view class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scroll="handleScroll">
+		<scroll-view v-if="horizontal" class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scroll="handleScroll">
 			<view class="song" v-for="(d, i) in songList" :key="i">
-				<img :src="d.picUrl" alt="">
+				<img :src="d.picUrl || d.coverImgUrl" alt="">
+				<view class="description">{{d.name}}</view>
+				<view class="count">{{setCount(d.playCount)}}</view>
+			</view>
+		</scroll-view>
+		<scroll-view v-else class="song-wrapper song-wrapper-y" scroll-y="true" :show-scrollbar=false  @scroll="handleScroll">
+			<view class="song" v-for="(d, i) in songList" :key="i">
+				<img :src="d.picUrl || d.coverImgUrl" alt="">
 				<view class="description">{{d.name}}</view>
 				<view class="count">{{setCount(d.playCount)}}</view>
 			</view>
@@ -31,6 +38,10 @@
 				default() {
 					return []
 				}
+			},
+			horizontal: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
@@ -70,6 +81,11 @@
 			// flex-wrap: nowrap;
 			white-space: nowrap;
 			
+			&.song-wrapper-y {
+				height: 100%;
+				white-space: normal;
+			}
+			
 			.song {
 				width: 33%;
 				flex-shrink: 0;
@@ -82,7 +98,6 @@
 				
 				img {
 					max-width: 100%;
-					border-radius: 8rpx
 				}
 				
 				.description {
