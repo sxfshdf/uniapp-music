@@ -1,19 +1,23 @@
 <template>
-	<view class="song-list-comp">
+	<view class="song-list-comp" :class="{'song-list-comp-y': !horizontal}">
 		<view class="title-wrapper">
 			<view v-if="title" class="title">{{title}}</view>
 			<navigator v-if="link" :url="link" class="show-more">查看更多</navigator>
 		</view>
 		<scroll-view v-if="horizontal" class="song-wrapper" scroll-x="true" :show-scrollbar=false  @scroll="handleScroll">
 			<view class="song" v-for="(d, i) in songList" :key="i">
-				<img :src="d.picUrl || d.coverImgUrl" alt="">
+				<view class="image-wrapper">
+					<image class="cover-image" mode="aspectFit" :src="d.picUrl || d.coverImgUrl" alt="" />
+				</view>
 				<view class="description">{{d.name}}</view>
 				<view class="count">{{setCount(d.playCount)}}</view>
 			</view>
 		</scroll-view>
-		<scroll-view v-else class="song-wrapper song-wrapper-y" scroll-y="true" :show-scrollbar=false  @scroll="handleScroll">
+		<scroll-view v-else class="song-wrapper song-wrapper-y" scroll-y="true" :show-scrollbar=false  @scrolltolower="scrollTop" @scroll="handleScroll">
 			<view class="song" v-for="(d, i) in songList" :key="i">
-				<img :src="d.picUrl || d.coverImgUrl" alt="">
+				<view class="image-wrapper">
+					<image class="cover-image" mode="aspectFit" :src="d.picUrl || d.coverImgUrl" alt="" />
+				</view>
 				<view class="description">{{d.name}}</view>
 				<view class="count">{{setCount(d.playCount)}}</view>
 			</view>
@@ -55,7 +59,7 @@
 			})
 		},
 		methods: {
-			handleScroll(event) {
+			handleScroll({detail}) {
 				// uni.navigateTo({
 				// 	url: '../test/index'
 				// })
@@ -66,6 +70,12 @@
 				} else {
 					return Math.floor(value / 100000000) + '亿'
 				}
+			},
+			scrollTop() {
+				this.$emit('scrollTop')
+			},
+			imageLoaded(e) {
+				this.$emit('imageLoaded', e)
 			}
 		}
 	}
@@ -76,6 +86,10 @@
 		width: 100%;
 		padding: 0 20rpx;
 		
+		&.song-list-comp-y {
+			padding-right: 0;
+		}
+		
 		.song-wrapper {
 			// display: flex;
 			// flex-wrap: nowrap;
@@ -84,6 +98,11 @@
 			&.song-wrapper-y {
 				height: 100%;
 				white-space: normal;
+				
+				.song {
+					margin-bottom: 32rpx;
+					width: calc(100% / 3);
+				}
 			}
 			
 			.song {
@@ -95,9 +114,27 @@
 				// &:last-child {
 				// 	padding-right: 0
 				// }
-				
-				img {
-					max-width: 100%;
+				.image-wrapper {
+					background: #fff;
+					width: 100%;
+					position: relative;
+					overflow: hidden;
+					border-radius: 12rpx;
+					margin-bottom: 12rpx;
+					
+					&:after {
+						content: '';
+						display: block;
+						margin-bottom: 100%;
+					}
+					
+					.cover-image {
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
 				}
 				
 				.description {

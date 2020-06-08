@@ -3,7 +3,7 @@
 		<view ref="tabBar" class="tab-bar">
 			<scroll-view scroll-x="true" :scroll-left="scrollLeft" class="scroll-menu" @scroll="scroll">
 				<view :ref="'menuTab' + d.value" class="menu-tab" v-for="(d, i) in tabs" :key="i" :class="{active: activeKey === d.value}"
-				@click="switchTab(d.value)">
+				@click="switchTab(d.value, d.label)">
 					<view class="menu-content" :ref="'menuContent' + d.value">{{d.label}}</view>
 				</view>
 			</scroll-view>
@@ -24,18 +24,19 @@
 			}
 		},
 		mounted() {
-			this.switchTab(0)
+			this.switchTab(0, '全部')
 		},
 		methods: {
-			switchTab(key) {
+			switchTab(key, label) {
 				this.activeKey = key
 				const refName = `menuTab${key}`
 				const refContent = `menuContent${key}`
 				let {width, left: tabLeft} = this.$refs[refName][0].$el.getBoundingClientRect()
 				let {width: widthContent} = this.$refs[refContent][0].$el.getBoundingClientRect()
+				console.log(this.$refs[refName][0].$el.getBoundingClientRect(), width, widthContent)
 				this.$refs.activeLine.$el.style.left = `${tabLeft + (width - widthContent) / 2}px`
 				this.$refs.activeLine.$el.style.width = `${widthContent}px`
-				this.$emit('switchTab', key)
+				this.$emit('switchTab', label)
 			},
 			scroll({detail}) {
 				let {scrollLeft} = detail
