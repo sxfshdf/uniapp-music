@@ -9,6 +9,10 @@
 	box-sizing: border-box;
 }
 
+* {
+	// transition: all linear 0.1s;
+}
+
 .flex-box {
 	display: flex;
 	align-items: center;

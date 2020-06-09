@@ -1,11 +1,12 @@
 <template>
 	<view class="song-square">
 		<TabMenu :tabs="tabs" @switchTab="switchTab"></TabMenu>
-		<SongList :class="{'active': currentType === '全部'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
-		<SongList :class="{'active': currentType === '华语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
-		<SongList :class="{'active': currentType === '欧美'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
-		<SongList :class="{'active': currentType === '日语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
-		<SongList :class="{'active': currentType === '韩语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
+		<SongList :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" />
+		<!-- <SongList :class="{'active': currentType === '全部'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" /> -->
+		<!-- <SongList :class="{'active': currentType === '华语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" /> -->
+		<!-- <SongList :class="{'active': currentType === '欧美'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" /> -->
+		<!-- <SongList :class="{'active': currentType === '日语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" /> -->
+		<!-- <SongList :class="{'active': currentType === '韩语'}" :songList="songList[currentType]" :horizontal="false" @scrollTop="scrollTop" /> -->
 	</view>
 </template>
 
@@ -31,7 +32,16 @@
 					value: 8
 				},{
 					label: '韩语',
+					value: 19
+				},{
+					label: '影视原声',
 					value: 16
+				},{
+					label: '古典',
+					value: 21
+				},{
+					label: '流行',
+					value: 100
 				}],
 				// songList: [],
 				songList: {
@@ -40,19 +50,22 @@
 					'欧美': [],
 					'日语': [],
 					'韩语': [],
+					'影视原声': [],
+					'古典': [],
+					'流行': []
 				},
 				currentType: '全部'
 			}
 		},
 		mounted() {
 			this.getSongs(this.currentType, 18)
-			// uni.request({
-			// 	url: `http://192.168.0.93:3000/playlist/catlist`,
-			// 	method: 'get',
-			// 	success: (res) => {
-			// 		console.log(res, 'res')
-			// 	}
-			// })
+			uni.request({
+				url: `http://192.168.0.93:3000/playlist/catlist`,
+				method: 'get',
+				success: (res) => {
+					console.log(res, 'res')
+				}
+			})
 		},
 		methods: {
 			switchTab(type) {
@@ -95,7 +108,7 @@
 			display: flex;
 			flex-direction: column;
 			height: 100%;
-			display: none;
+			// display: none;
 			
 			&.active {
 				display: block;
