@@ -16,7 +16,7 @@
 <script>
 	export default {
 		name: 'TabMenu',
-		props: ['tabs'],
+		props: ['tabs', 'currentTab'],
 		data() {
 			return {
 				activeKey: 0,
@@ -74,7 +74,7 @@
 					}
 				}
 				this.$refs.activeLine.$el.style.width = `${widthContent}px`
-				this.$emit('switchTab', label)
+				this.$emit('switchTab', {key, label})
 				this.lastIndex = index
 			},
 			scroll({detail}) {
@@ -89,6 +89,14 @@
 					this.clickTab = false
 				}, 10)
 				
+			}
+		},
+		watch: {
+			currentTab: {
+				handler(val) {
+					this.switchTab(val.index, val.key, val.type)
+				},
+				deep: true
 			}
 		}
 	}
@@ -124,6 +132,7 @@
 				flex: 1;
 				display: inline-block;
 				font-size: 28rpx;
+				line-height: 36rpx;
 				font-weight: bold;
 				padding: 16rpx 32rpx;
 				min-width: 128rpx;
