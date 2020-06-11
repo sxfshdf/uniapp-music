@@ -1,7 +1,7 @@
 <template>
 	<!-- <view class="song-square"> -->
 		<view ref="tabBar" class="tab-bar">
-			<scroll-view scroll-x="true" :scroll-left="scrollLeft" :scroll-with-animation="true" class="scroll-menu" @scroll="scroll">
+			<scroll-view scroll-x="true" :scroll-left="scrollLeft" class="scroll-menu" @scroll="scroll">
 				<view :ref="'menuTab' + d.value" class="menu-tab" v-for="(d, i) in tabs" :key="i" :class="{active: activeKey === d.value}"
 				@click="switchTab(i, d.value, d.label)">
 					<view class="menu-content" :ref="'menuContent' + d.value">{{d.label}}</view>
@@ -68,7 +68,7 @@
 				} else {
 					this.scrollLeft = this.scrollLeft + width
 					if (this.lastIndex < this.tabs.length - 3) {
-						this.$refs.activeLine.$el.style.left = `${tabLeft - 41 - (index - this.lastIndex)*36 + (width - widthContent) / 2}px`
+						this.$refs.activeLine.$el.style.left = `${tabLeft - 21 - (index - this.lastIndex)*36 + (width - widthContent) / 2}px`
 					} else {
 						this.$refs.activeLine.$el.style.left = `${tabLeft + (width - widthContent) / 2}px`
 					}
@@ -85,10 +85,7 @@
 				let {width, left: tabLeft} = this.$refs[refName][0].$el.getBoundingClientRect()
 				let {width: widthContent} = this.$refs[refContent][0].$el.getBoundingClientRect()
 				this.$refs.activeLine.$el.style.left = `${tabLeft + (width - widthContent) / 2}px`
-				setTimeout(() => {
-					this.clickTab = false
-				}, 10)
-				
+				this.clickTab = false
 			}
 		},
 		watch: {
@@ -123,7 +120,7 @@
 			background: $primaryColor;
 			
 			&.transition {
-				transition: all linear 0.15s;
+				// transition: all linear 0.15s;
 			}
 		}
 		.scroll-menu {
@@ -140,7 +137,7 @@
 				text-align: center;
 				color: #333;
 				position: relative;
-				transition: all linear 0.15s;
+				// transition: all linear 0.15s;
 				
 				&.active {
 					color: $primaryColor;

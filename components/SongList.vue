@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import {setCount} from '@/utils/common.js'
 	export default {
 		name: 'SongList',
 		props: {
@@ -64,13 +65,7 @@
 				// 	url: '../test/index'
 				// })
 			},
-			setCount(value) {
-				if (value.toString().length < 9) {
-					return Math.floor(value/10000) + '万'
-				} else {
-					return Math.floor(value / 100000000) + '亿'
-				}
-			},
+			setCount,
 			scrollTop() {
 				this.$emit('scrollTop')
 			},
@@ -94,6 +89,7 @@
 			// display: flex;
 			// flex-wrap: nowrap;
 			white-space: nowrap;
+			min-height: 200rpx;
 			
 			&.song-wrapper-y {
 				height: 100%;

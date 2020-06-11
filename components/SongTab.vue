@@ -139,6 +139,7 @@
 			justify-content: space-between;
 			
 			.tab-item-wrapper {
+				
 				.tab-item {
 					font-size: 28rpx;
 					padding: 20rpx 20rpx 20rpx 0;
@@ -165,6 +166,7 @@
 		}
 		.scroll-wrapper {
 			white-space: nowrap;
+			min-height: 200rpx;
 			
 			.scroll-item-wrapper {
 				display: inline-block;

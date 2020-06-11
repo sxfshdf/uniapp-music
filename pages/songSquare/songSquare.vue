@@ -149,6 +149,7 @@
 				// console.log(e, 'eeee')
 			},
 			swiperChange({detail}) {
+				console.log('swiper')
 				this.tabIndex = detail.current
 				let type
 				this.tabs.forEach(tab => {
